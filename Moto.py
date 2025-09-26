@@ -7,7 +7,7 @@ class Moto:
         self.velocidade = 0
 
     def acelerar(self, valor):
-        self.velociade += valor
+        self.velocidade += valor
         print(f"{self.modelo} acelerou para {self.velocidade} km/!")
     
     def frear(self, valor):
@@ -20,17 +20,17 @@ class Moto:
         return (f"{self.marca} {self.modelo} ({self.ano}) - "
         f"cor: {self.cor}, velocidade: {self.velocidade} km/h")
 
-        moto1 = Moto("Yamaha", "trail XTZ", 2020, "azul")
-        moto2 = Moto("Honda", "Civic", "2019", "Amarela")
+moto1 = Moto("Yamaha", "trail XTZ", 2020, "azul")
+moto2 = Moto("Honda", "Civic", "2019", "Amarela")
 
-        print(moto1.detalhes())
-        print(moto2.detalhes())
+print(moto1.detalhes())
+print(moto2.detalhes())
 
-        moto1.acelerar(50)
-        moto2.acelerar(30)
+moto1.acelerar(50)
+moto2.acelerar(30)
 
-        moto1.frear(20)
-        moto2.frear(15)
+moto1.frear(20)
+moto2.frear(15)
 
-        print(moto1.detalhes())
-        print(moto2.detalhes())
+print(moto1.detalhes())
+print(moto2.detalhes())
