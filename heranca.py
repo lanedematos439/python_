@@ -21,7 +21,7 @@ class Professor(Pessoa):
         return f"Professor {self.nome} de {self.disciplina}"
         
 class BolsaMixin:
-    def __init__(self) -> float:
+    def calcular_bolsa(self) -> float:
         return 1200.00
     
 class AlunoBolsista(BolsaMixin, Aluno):
@@ -55,4 +55,5 @@ class AlunoBolsista(BolsaMixin, Aluno):
         main()
     
         
+
 
