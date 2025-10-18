@@ -17,8 +17,8 @@ class Professor(Pessoa):
         super().__init__(nome)
         self.disciplina = disciplina
 
-        def apresentar(self) -> str:
-            return f"Professor {self.nome} de {self.disciplina}"
+    def apresentar(self) -> str:
+        return f"Professor {self.nome} de {self.disciplina}"
         
 class BolsaMixin:
     def __init__(self) -> float:
@@ -55,3 +55,4 @@ class AlunoBolsista(BolsaMixin, Aluno):
         main()
     
         
+
