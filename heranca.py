@@ -1,15 +1,16 @@
 class Pessoa:
-    def _init_(self, nome: str, cpf: str) -> None:
+    def __init__(self, nome: str, cpf: str, matricula: str) -> None:
         self.nome = nome
         self.cpf = cpf
+        self.matricula = matricula
 
     def apresentar(self) -> str:
         return f"Olá, meu nome é {self.nome} e meu CPF é {self.cpf}."
 
 
 class Aluno(Pessoa):
-    def _init_(self, nome: str, matricula: str, cpf: str) -> None:
-        super()._init_(nome, cpf)
+    def __init__(self, nome: str, matricula: str, cpf: str) -> None:
+        super().__init__(nome, cpf)
         self.matricula = matricula
 
     def apresentar(self) -> str:
@@ -17,22 +18,28 @@ class Aluno(Pessoa):
 
 
 class Professor(Pessoa):
-    def _init_(self, nome: str, disciplina: str, cpf: str) -> None:
-        super()._init_(nome, cpf)
+    def __init__(self, nome: None, matricula: None, disciplina: None):
+        if nome is None:
+            nome = input("Olá, digite o seu nome professor: ")
+        if matricula is None:
+            matricula = input("Digite o número da matricula do professor: ")
+        if disciplina is None:
+            disciplina = input("Digite a disciplina que o professor leciona: ")
+        super().__init__(nome, matricula)
         self.disciplina = disciplina
 
-    def apresentar(self) -> str:
-        return f"Olá, meu nome é {self.nome} meu cpf é {self.cpf} e eu ensino {self.disciplina}."
-
-
+    def apresentar(self):
+        base = super().apresentar()
+        return f"Meu nome é {self.nome}, minha matricula é {self.matricula} e sou professor da disciplina de {self.disciplina}"
+    
 class BolsaMixin:
     def calcular_bolsa(self) -> float:
         return 1200.0 
 
 
 class AlunoBolsista(BolsaMixin, Aluno):
-    def _init_(self, nome: str, matricula: str, cpf: str) -> None:
-        super()._init_(nome, matricula, cpf)
+    def __init__(self, nome: str, matricula: str, cpf: str) -> None:
+        super().__init__(nome, matricula, cpf)
 
     def apresentar(self) -> str:
         base = super().apresentar()
@@ -46,7 +53,7 @@ def apresentar_todos(pessoas: list[Pessoa]) -> list[str]:
 def main() -> None:
     p = Pessoa("João", "000.000.000-00")
     a = Aluno("Ana", "A123", "111.111.111-11")
-    prof = Professor("Carlos", "Matemática", "222.222.222-22")
+    prof = Professor()
     ab = AlunoBolsista("Beatriz", "B456", "333.333.333-33")
 
     resultados = apresentar_todos([p, a, prof, ab])
@@ -60,12 +67,9 @@ def main() -> None:
           sep="\n")
 
     print("MRO AlunoBolsista:")
-    for cls in AlunoBolsista._mro_:
-        print(" -", cls._name_)
+    for cls in AlunoBolsista.__mro__:
+        print(" -", cls.__name__)
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
-
-
-
